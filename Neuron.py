@@ -29,8 +29,8 @@ class Input(Neuron):
     
 
 class Add(Neuron):
-    def __init__(self, x, y):
-        Neuron.__init__(self, [x, y])
+    def __init__(self, *input_tuple):
+        Neuron.__init__(self, list(input_tuple))
         self.value = 0.
     
     def forward(self):
