@@ -37,6 +37,16 @@ class Add(Neuron):
         for neuron in self.inbound_neurons:
             self.value = self.value + neuron.value
             
+class Linear(Neuron):
+    def __init__(self, inputs, weights, bias):
+        Neuron.__init__(self, [inputs, weights, bias])
+        self.value = 0.
+        
+    def forward(self):        
+        for input_value, weight in zip(self.inbound_neurons[0].value, self.inbound_neurons[1].value):
+            self.value += input_value * weight 
+        self.value +=  self.inbound_neurons[2].value   
+            
 def topological_sort(feed_dict):
     """
     Sort generic nodes in topological order using Kahn's Algorithm.
